@@ -1,0 +1,17 @@
+version: '3'
+services:
+  ftp:
+    image: fauria/vsftpd
+    container_name: vsftpd
+    ports:
+     - "20:20"
+     - "21:21"
+     - "10000-10009:10000-10009"
+    environment: 
+      FTP_USER: ftpuser
+      FTP_PASS: 123456
+      PASV_MIN_PORT: 10000
+      PASV_MAX_PORT: 10009
+    volumes: 
+      - ~/target:/home/vsftpd
+    restart: on-failure
